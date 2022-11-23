@@ -1,0 +1,72 @@
+#include <LiquidCrystal.h>
+int Contrast = 100;
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+int hour=23;
+int minute=59;
+int sec=46;
+int day = 18;
+int month = 11;
+int year = 22;
+void setup()
+{
+  analogWrite(6, Contrast);
+  lcd.begin(16, 2);
+  lcd.setCursor(2, 0);
+  lcd.print("Gary Brackins   ");
+    lcd.setCursor(2, 1);
+
+    lcd.print("   CSC 307       ");
+  delay(3000);
+  lcd.clear();
+}
+
+
+
+
+void loop()
+{
+
+
+
+  lcd.setCursor(2, 0);
+  lcd.print("Date:");
+lcd.print(month);
+  lcd.print(":");
+    lcd.print(day);
+        lcd.print(":");
+          lcd.print(year);
+lcd.setCursor(2, 1);
+  lcd.print("Time:");
+
+  lcd.print(hour);
+  lcd.print(":");
+  lcd.print(minute);
+  lcd.print(":");
+  lcd.print(sec);
+   lcd.print("                         "); // temp fix lol
+
+   lcd.scrollDisplayLeft();
+   lcd.scrollDisplayLeft();
+   lcd.scrollDisplayLeft();
+
+
+ sec=sec+1;
+ delay(1000);
+if(sec>=60){
+  sec=0;
+  minute=minute+1;
+ }
+  if(minute>=60)
+ {
+  minute=0;
+  hour=hour+1;
+ }
+ if(hour>=24)
+ {
+ hour=0;
+ day=day+1;
+}
+}
+
+
